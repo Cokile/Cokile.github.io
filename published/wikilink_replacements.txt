@@ -1,0 +1,6 @@
+# Wikilink replacement report
+
+- (Some) Utility Traits Demystified/(Some) Utility Traits Demystified (EN).md: [[Taking Arms Against A Sea of Objects (EN)|previous article]] -> [previous article](/taking-arms-against-a-sea-of-objects/)
+- RxSwift 其之三 - Subject/RxSwift 其之三 - Subject (EN).md: [[RxSwift 其之二 - Scheduler (EN)|previous article]] -> [previous article](/rxswift-scheduler/)
+- RxSwift 其之二 - Scheduler/RxSwift 其之二 - Scheduler (EN).md: [[RxSwift 其之一 - Observable Observer (EN)|previous article]] -> [previous article](/rxswift-observable-observer/)
+- Save the Environment Create a Closure Today!/Save the Environment Create a Closure Today! (EN).md: [[Taking Arms Against A Sea of Objects (EN)|previous article]] -> [previous article](/taking-arms-against-a-sea-of-objects/)

@@ -1,0 +1,22 @@
+title: Blog
+markdown: kramdown
+theme: minima
+
+plugins:
+  - jekyll-feed
+
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
+    - global-builtin
+    - color-functions
+    - slash-div
+
+exclude:
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+collections_dir: .

@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    {% if page.date %}
+    <p class="post-meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+    {% endif %}
+  </header>
+
+  <div class="post-content">
+    {% if page.path contains 'published/' %}
+    <nav id="post-toc" class="post-toc" hidden>
+      <h2>Table of Contents</h2>
+      <ul id="post-toc-list"></ul>
+    </nav>
+    {% endif %} {{ content }}
+  </div>
+</article>
+
+{% if page.path contains 'published/' %}
+<a id="toc-jump" class="toc-jump" href="#post-toc" hidden>Back to TOC</a>
+<script>
+  (function () {
+    var content = document.querySelector(".post-content");
+    var toc = document.getElementById("post-toc");
+    var list = document.getElementById("post-toc-list");
+    var jump = document.getElementById("toc-jump");
+    if (!content || !toc || !list) return;
+
+    var headings = content.querySelectorAll("h1, h2, h3");
+    var items = [];
+
+    for (var i = 0; i < headings.length; i++) {
+      var heading = headings[i];
+      if (heading.closest("#post-toc")) continue;
+
+      if (!heading.id) {
+        var slug = heading.textContent
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-");
+        heading.id = slug || "section-" + i;
+      }
+
+      items.push({
+        id: heading.id,
+        text: heading.textContent,
+        level: heading.tagName.toLowerCase(),
+      });
+    }
+
+    if (!items.length) return;
+
+    for (var j = 0; j < items.length; j++) {
+      var item = items[j];
+      var li = document.createElement("li");
+      li.className = "toc-" + item.level;
+
+      var a = document.createElement("a");
+      a.href = "#" + item.id;
+      a.textContent = item.text;
+
+      li.appendChild(a);
+      list.appendChild(li);
+    }
+
+    toc.hidden = false;
+    if (jump) {
+      var toggleJump = function () {
+        jump.hidden = window.scrollY < 260;
+      };
+
+      toggleJump();
+      window.addEventListener("scroll", toggleJump, { passive: true });
+    }
+  })();
+</script>
+{% endif %}
